@@ -2,31 +2,34 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+export default function Signin() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [button, setButton] = useState("Sign Up");
+  const [button, setButton] = useState("Login");
 
   const handleSubmit = async (e) => {
    
-    setButton("Signing Up...");
+    setButton("Logining...");
+
 
     try {
       const response = await axios.post("", {
-        firstName,
-        lastName,
         email,
         password,
       });
+      if(!response){
+            alert("Invalid Credentials");
+            navigate("/signup");
+            setButton("Login");
+      }
 
       localStorage.setItem("token", response.data.token);
       navigate("/dashboard");
     } catch (err) {
       console.log(err);
-      setButton("Sign Up");
+      setButton("Login");
     }
   };
 
@@ -49,24 +52,9 @@ export default function Signup() {
   return (
     <div className="h-screen flex items-center justify-center bg-gradient-to-r from-green-200 to-blue-200">
       <form className="bg-white shadow-md rounded-lg p-10 max-w-lg w-full" onSubmit={handleSubmit}>
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Welcome to <span className="bg-gradient-to-r from-green-200 to-blue-200">PayUP</span></h1>
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">SignUp</h2>
-        <InputField
-          id="firstName"
-          label="First name"
-          type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          placeholder="Rishit"
-        />
-        <InputField
-          id="lastName"
-          label="Last name"
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          placeholder="Kamboj"
-        />
+        <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">Welcome to <span className="bg-gradient-to-r from-green-200 to-blue-200">PayUP</span></h1>
+        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Login</h2>
+       
         <InputField
           id="email"
           label="Email"
@@ -89,8 +77,9 @@ export default function Signup() {
         >
           {button}
         </button>
-        <div className="flex justify-center">If you  an account? <a href="/signin" className="ml-1">Login</a></div>
+          <div className="flex justify-center">If you do not have an account? <a href="/signup" className="ml-1"> SignUp</a></div>
       </form>
+    
     </div>
   );
 }
