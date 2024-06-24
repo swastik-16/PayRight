@@ -1,9 +1,10 @@
+import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
 
 
 function Home(){
      return(<div>
-         <NavBar name="Rishit"/>
+        <Hero />
      </div>)
 }
 

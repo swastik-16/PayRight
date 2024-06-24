@@ -14,6 +14,6 @@ export default function Dashboard() {
     }, [navigate]);
 
     return (
-        <div></div>
+        <div>hehehe</div>
     );
 }
