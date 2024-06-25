@@ -11,7 +11,7 @@ function Home() {
     if (token) {
       router("/dashboard");
     }
-  }, [navigate]);
+  }, [router]);
 
   // useEffect(() => {
   //   const token = localStorage.getItem('token'); 
