@@ -171,7 +171,8 @@ router.get("/bulk", async (req, res) => {
         }
 
         res.json({
-            firstName: user.firstName
+            firstname: user.firstname,
+            userid:req.userId 
         });
     } catch (error) {
         console.error("Error in /userinfo route:", error); 

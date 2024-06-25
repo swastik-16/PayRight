@@ -1,9 +1,9 @@
 import React from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import image from '../assets/image.png';
 
 export default function Hero() {
-  const route =useNavigate();
+  const route = useNavigate();
 
   return (
     <div className="flex flex-wrap">
@@ -26,7 +26,7 @@ export default function Hero() {
               <div className="flex gap-2">
                 <button
                   onClick={() => {
-                   route("/signin");
+                    route("/signin");
                   }}
                   className="bg-green-500 text-white text-2xl font-medium px-4 py-2 rounded-full shadow"
                 >
@@ -34,7 +34,7 @@ export default function Hero() {
                 </button>
                 <button
                   onClick={() => {
-                  route("/signup");
+                    route("/signup");
                   }}
                   className="bg-green-500 text-white text-2xl font-medium px-4 py-2 rounded-full shadow"
                 >

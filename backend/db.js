@@ -1,6 +1,7 @@
 const mongoose=require("mongoose");
+require("dotenv").config();
 
-mongoose.connect("mongodb+srv://rishitkamboj24:ilovesis@cluster0.hlpepga.mongodb.net/newtable");
+mongoose.connect(process.env.MONGO_URL);
 
 
 

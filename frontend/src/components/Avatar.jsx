@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Avatar({ n }) { 
-       const router=useNavigate();
+    const router = useNavigate();
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const spanRef = useRef(null);
@@ -12,9 +12,8 @@ export default function Avatar({ n }) {
     };
 
     const handleLogout = () => {
-       localStorage.removeItem('token');
-           router('/');
-       
+        localStorage.removeItem('token');
+        router('/');
     };
 
     const handleClickOutside = (event) => {
@@ -33,10 +32,10 @@ export default function Avatar({ n }) {
     return (
         <div className="relative inline-flex items-center justify-center">
             <div
-                className="w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600 flex items-center justify-center cursor-pointer"
+                className="w-10 h-10 bg-green-200 rounded-full flex items-center justify-center cursor-pointer"
                 onClick={toggleDropdown}
             >
-                <span ref={spanRef} className="font-medium text-gray-600 dark:text-gray-300">{n}</span>
+                <span ref={spanRef} className="font-medium text-green-700">{n}</span>
             </div>
             {dropdownOpen && (
                 <div

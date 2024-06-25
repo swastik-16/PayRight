@@ -29,8 +29,9 @@ export default function Signup() {
         password,
       });
 
-      localStorage.setItem("token", response.data.token);
-      navigate("/dashboard");
+      // localStorage.setItem("token", response.data.token);
+      alert("Successfully signed in, Please login to continue.");
+      navigate("/signin");
     } catch (err) {
       console.error(err);
       setButton("Sign Up");
