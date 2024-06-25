@@ -6,6 +6,13 @@ import Hero from '../components/Hero';
 function Home() {
   const router= useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   // useEffect(() => {
   //   const token = localStorage.getItem('token'); 
 
