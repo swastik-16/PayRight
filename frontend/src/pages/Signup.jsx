@@ -114,9 +114,9 @@ export default function Signup() {
           {button}
         </button>
         <div className="flex justify-center mt-4">
-          Already have an account? <a onClick={()=>{
+          Already have an account? <div onClick={()=>{
             navigate("/signin");
-          }}href="/" className="ml-1 text-green-700 underline">Login</a>
+          }} className="ml-1 text-green-700 underline">Login</div>
         </div>
       </form>
     </div>
