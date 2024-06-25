@@ -74,40 +74,38 @@ const signinBody = zod.object({
       password: zod.string()
  })
 
-router.post("/signin",async (req,res)=>{
-     const {success}=signinBody.safeParse({
-          username:req.body.username,
-          password:req.body.password
-     });
-     if(!success){
-          return res.status(411).json({
-               message: "Incorrect inputs"
-           })
-             }
-             const user = await User.findOne({
-               username: req.body.username,
-             
-           });
-  const passwordcheck=await bcrypt.compare(req.body.password,user.password);
 
-           if(user && passwordcheck){
+ router.post("/signin", async (req, res) => {
+    const { success, error } = signinBody.safeParse(req.body);
+    if (!success) {
+        return res.status(400).json({
+            message: "Incorrect inputs",
+            error: error.errors
+        });
+    }
 
-               const token=jwt.sign({userId:user._id},JWT_SECRET);
+    const user = await User.findOne({
+        username: req.body.username
+    });
 
-               res.json({
-                    token:token
-               })
-                    return;
-           }
+    if (!user) {
+        return res.status(401).json({
+            message: "Invalid username or password"
+        });
+    }
 
-           res.status(411).json({
-               message: "Error while logging in"
-           })
+    const passwordCheck = await bcrypt.compare(req.body.password, user.password);
 
-
-
-
-
+    if (passwordCheck) {
+        const token = jwt.sign({ userId: user._id }, JWT_SECRET);
+        return res.json({
+            token: token
+        });
+    } else {
+        return res.status(401).json({
+            message: "Invalid username or password"
+        });
+    }
 });
 
 
@@ -161,6 +159,25 @@ router.get("/bulk", async (req, res) => {
  })
   
 
+
+ router.get('/userinfo', authMiddleware, async (req, res) => {
+    try {
+        const user = await User.findOne({
+           _id: req.userId 
+        });
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        res.json({
+            firstName: user.firstName
+        });
+    } catch (error) {
+        console.error("Error in /userinfo route:", error); 
+        res.status(500).json({ error: "Server Error" });
+    }
+});
 
 
 
