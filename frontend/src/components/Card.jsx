@@ -45,7 +45,7 @@ const CardComponent = ({ name, to }) => {
           navigate("/dashboard");
     } catch (error) {
       console.error("Error sending money:", error);
-      alert("Failed to send money. Please try again."); 
+      alert("Failed to send money. Please try again. "+error.response.data.message); 
     }
   };
 
