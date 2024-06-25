@@ -13,6 +13,7 @@ export default function Send() {
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const url=import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
    
@@ -31,7 +32,7 @@ export default function Send() {
 
   const fetchBalance = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/v1/user/userinfo", {
+      const response = await axios.get(`${url}/api/v1/user/userinfo`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -8,6 +8,7 @@ import Name from "./Name";
 
 export default function Welcome(){
      const navigate = useNavigate();
+     const url=import.meta.env.VITE_BACKEND;
          const [name,setName]=useState("");
          const token=localStorage.getItem("token");
          useEffect(() => {
@@ -17,7 +18,7 @@ export default function Welcome(){
           } else {
             const fetchBalance = async () => {
               try {
-                const response = await axios.get("http://localhost:3000/api/v1/user/userinfo", {
+                const response = await axios.get(`${url}/api/v1/user/userinfo`, {
                   headers: {
                     Authorization: `Bearer ${token}`
                   }

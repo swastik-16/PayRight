@@ -7,11 +7,12 @@ export default function Users() {
     const [users, setUsers] = useState([]);
     const [mine, setMine] = useState(null);
     const [token, setToken] = useState(""); 
+    const url=import.meta.env.VITE_BACKEND;
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/v1/user/bulk?filter=${input}`);
+                const response = await axios.get(`${url}/api/v1/user/bulk?filter=${input}`);
                 setUsers(response.data.user); 
             } catch (error) {
                 console.error('Error fetching users:', error);
@@ -20,7 +21,7 @@ export default function Users() {
 
         const fetchMine = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/v1/user/userinfo", {
+                const response = await axios.get(`${url}/api/v1/user/userinfo`, {
                     headers: {
                         Authorization: `Bearer ${token}` 
                     }

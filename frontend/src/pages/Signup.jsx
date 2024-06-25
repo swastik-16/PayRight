@@ -9,6 +9,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [button, setButton] = useState("Sign Up");
+  const url=import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -22,7 +23,7 @@ export default function Signup() {
     setButton("Signing Up...");
 
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
+      const response = await axios.post(`${url}/api/v1/user/signup`, {
         firstname,
         lastname,
         username,

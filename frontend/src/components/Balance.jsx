@@ -6,6 +6,7 @@ export default function Balance() {
   const navigate = useNavigate();
   const [balance, setBalance] = useState(0);
   const token = localStorage.getItem("token");
+  const url=import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
     if (token == null) {
@@ -14,7 +15,7 @@ export default function Balance() {
     } else {
       const fetchBalance = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/api/v1/account/balance", {
+          const response = await axios.get(`${url}/api/v1/account/balance`, {
             headers: {
               Authorization: `Bearer ${token}`
             }

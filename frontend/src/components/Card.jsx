@@ -6,6 +6,7 @@ const CardComponent = ({ name, to }) => {
   const [amount, setAmount] = useState(''); 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const url=import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
     
@@ -30,7 +31,7 @@ const CardComponent = ({ name, to }) => {
     alert(`Sending ${amount} to ${name}`);
 
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/account/transfer", {
+      const response = await axios.post(`${url}/api/v1/account/transfer`, {
         to,
         amount
       }, {

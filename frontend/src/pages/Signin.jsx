@@ -7,6 +7,7 @@ export default function Signin() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [button, setButton] = useState("Login");
+  const url=import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -20,7 +21,7 @@ export default function Signin() {
     setButton("Logging in...");
 
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
+      const response = await axios.post(`${url}/api/v1/user/signin`, {
         username,
         password,
       });
