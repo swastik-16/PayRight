@@ -1,6 +1,4 @@
-Certainly! Here's an updated README for your payments app called PayEase, with improved structure and content:
 
----
 
 # PayEase Payments App
 
